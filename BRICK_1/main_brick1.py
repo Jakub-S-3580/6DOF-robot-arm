@@ -4,7 +4,7 @@
 import os
 import sys
 import time
-from ev3dev2 import LargeMotor, OUTPUT_A,OUTPUT_B,OUTPUT_C,OUTPUT_D
+from ev3dev2.motor import LargeMotor, MediumMotor
 
 # state constants
 ON = True
@@ -17,5 +17,9 @@ def debug_print(*args, **kwargs):
     '''
     print(*args, **kwargs, file=sys.stderr)
 
-A1 = LargeMotor(OUTPUT_A)
+A1 = LargeMotor()
+A2 = LargeMotor()
+Pneumatics = LargeMotor()
 A1.on_for_seconds(100,3)
+A2.on_for_seconds(100,3)
+Pneumatics.on_for_seconds(100,3)

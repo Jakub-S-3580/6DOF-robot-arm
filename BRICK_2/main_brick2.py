@@ -17,12 +17,16 @@ def debug_print(*args, **kwargs):
     '''
     print(*args, **kwargs, file=sys.stderr)
 
+def run(motor, *args, **kwargs):
+    motor.on_for_seconds(*args, **kwargs)
+    if motor.is_stalled() == True:
+        motor.stop()
+        run(motor,*args, **kwargs)
+
+
 A3 = LargeMotor()
 A4 = MediumMotor()
 A5 = MediumMotor()
 A6 = MediumMotor()
 
 A3.on_for_seconds(100,3)
-A4.on_for_seconds(100,3)
-A5.on_for_seconds(100,3)
-A6.on_for_seconds(100,3)

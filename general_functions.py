@@ -14,4 +14,5 @@ def run(motor, *args, **kwargs):
     motor.on_for_seconds(*args, **kwargs)
     if motor.is_stalled == True:
         motor.stop()
+        debug_print(str(motor) + ' has stalled - restarting')
         run(motor,*args, **kwargs)

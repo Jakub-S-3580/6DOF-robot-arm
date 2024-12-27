@@ -4,29 +4,19 @@
 import os
 import sys
 import time
-from ev3dev2.motor import LargeMotor, MediumMotor
+from ev3dev2.motor import LargeMotor, MediumMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
+from general_functions import *
 
 # state constants
 ON = True
 OFF = False
 
-def debug_print(*args, **kwargs):
-    '''Print debug messages to stderr.
-
-    This shows up in the output panel in VS Code.
-    '''
-    print(*args, **kwargs, file=sys.stderr)
-
-def run(motor, *args, **kwargs):
-    motor.on_for_seconds(*args, **kwargs)
-    if motor.is_stalled() == True:
-        motor.stop()
-        run(motor,*args, **kwargs)
 
 
-A3 = LargeMotor()
-A4 = MediumMotor()
-A5 = MediumMotor()
-A6 = MediumMotor()
+
+A3 = LargeMotor(OUTPUT_A)
+A4 = MediumMotor(OUTPUT_B)
+A5 = MediumMotor(OUTPUT_C)
+A6 = MediumMotor(OUTPUT_D)
 
 A3.on_for_seconds(100,3)

@@ -21,10 +21,18 @@ module axis_2(){
         };
 };
 
+module axis_3(){
+    union(){
+    translate([22.5,5,5])cube([5,50,50],center = true);
+    translate([-22.5,5,5])cube([5,50,50],center = true);
+    translate([0,87.5,55])cube([50,225,50],center = true);
+    };
+};
+
 Base_size = [150,150,10];
 A1_position = [0,0,50];
-A2_position = [0,0,200];
-A3_position = [200,0,75];
+A2_position = [0,200,0];
+A3_position = [200,0,55];
 A4_size = [50,50,20];
 A5_size = [40,40,50];
 A6_size = [20,20,20];
@@ -54,46 +62,13 @@ target_z = target_position[2];
 target_xrot = target_rotation[0];
 target_yrot = target_rotation[1];
 target_zrot = target_rotation[2];
-/*
-{
-    translate([-50,-50,-10]) cube([100,100,10]);
 
-
-    module axis_3(position,rotation){
-        axis_len = l2;
-        axis_wid = 40;
-        axis_hgt = 40;
-        translate([position.x+axis_len,position.y-axis_wid/2,position.z-axis_hgt/2]) rotate(rotation){
-        cube([axis_len,axis_wid,axis_hgt]);
-        };
-    };
-
-    module axis_2(position,rotation){
-        axis_len = l1;
-        axis_wid = 40;
-        axis_hgt = 40;
-        rotate(rotation) {
-            translate([position.x,position.y-axis_wid/2,position.z]) cube([axis_len,axis_wid,axis_hgt]);
-            axis_3([0,0,axis_hgt/2],[0,A3_current,0]);
-        };
-    };
-
-    module axis_1(position,rotation){
-        axis_len = 30;
-        axis_wid = 30;
-        axis_hgt = 10;
-        rotate(rotation) {
-            translate([position.x,position.y,position.z+axis_hgt/2]) cube([axis_len,axis_wid,axis_hgt],center = true);
-            axis_2([position.x,position.y,position.z+axis_hgt],[rotation.x,-A2_current,rotation.y]);
-        };
-    };
-}
-*/
 /*
 module target(position,rotation){
     axis(position,rotation);
 };
-
+*/
+/*
 module robot(position,rotation){
     translate(position) rotate(rotation){  
     translate([0,0,-Base_size.z/2]) cube(Base_size,center = true);
@@ -106,11 +81,8 @@ module robot(position,rotation){
     };
 };
 */
-rotate([20,0,0])axis_2()
-//axis_1(initial_position,[0,0,A1_current]);
-target(target_position,target_rotation);
-robot([0,0,0],[0,0,0]);
-
+rotate([20,0,0]){axis_2();
+translate(A2_position) rotate([-160,0,0])axis_3();}
 
 //axis_1(initial_position,[0,0,A1_current]);
 target(target_position,target_rotation);

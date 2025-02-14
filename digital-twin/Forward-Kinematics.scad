@@ -5,12 +5,26 @@ module axis(position,rotation){
    color("green") rotate([0,90,0]) cylinder(20,1,1);
    };
    };
-axis([-70,-70,-20],[0,0,0]);
+axis([-80,-80,-20],[0,0,0]);
 
-Base_size = [100,100,10];
-A1_size = [40,40,10];
-A2_size = [40,40,200];
-A3_size = [40,40,200];
+module axis_1(){
+        translate([0,0,10])cube([100,100,20],center = true);
+        translate([0,0,45])cube([40,40,50],center = true);
+};
+
+module axis_2(){
+        union(){
+        translate([22.5,5,0])cube([5,50,40],center = true);
+        translate([-22.5,5,0])cube([5,50,40],center = true);
+        translate([0,100,0])cube([50,140,40],center = true);
+        translate([0,195,0])cube([40,50,40],center = true);
+        };
+};
+
+Base_size = [150,150,10];
+A1_position = [0,0,50];
+A2_position = [0,0,200];
+A3_position = [200,0,75];
 A4_size = [50,50,20];
 A5_size = [40,40,50];
 A6_size = [20,20,20];
@@ -23,8 +37,8 @@ A4_limit = [0,369];
 A5_limit = [0,180];
 A6_limit = [0,360];
 
-A1_current = 45;
-A2_current =40;
+A1_current = 0;
+A2_current = 0;
 A3_current = 0;
 A4_current = 0;
 A5_current = 0;
@@ -75,7 +89,7 @@ target_zrot = target_rotation[2];
     };
 }
 */
-
+/*
 module target(position,rotation){
     axis(position,rotation);
 };
@@ -83,14 +97,19 @@ module target(position,rotation){
 module robot(position,rotation){
     translate(position) rotate(rotation){  
     translate([0,0,-Base_size.z/2]) cube(Base_size,center = true);
-    translate([0,0,A1_size.z/2]) rotate([0,0,A1_current]){
-            cube(A1_size,center = true)
+    translate([0,0,0]) rotate([0,0,A1_current]){
+            axis_1();
             translate([0,0,A1_size.z]) rotate([0,-A2_current,0]){
-            translate([0,-A2_size.y/2,A2_size.x/2]) cube(A2_size);
+            translate([0,-A2_size.y/2,A2_size.x/2]) axis_2();
         };
         };
     };
 };
+*/
+rotate([20,0,0])axis_2()
+//axis_1(initial_position,[0,0,A1_current]);
+target(target_position,target_rotation);
+robot([0,0,0],[0,0,0]);
 
 
 //axis_1(initial_position,[0,0,A1_current]);

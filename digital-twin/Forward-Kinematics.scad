@@ -63,11 +63,11 @@ target_xrot = target_rotation[0];
 target_yrot = target_rotation[1];
 target_zrot = target_rotation[2];
 
-/*
+
 module target(position,rotation){
     axis(position,rotation);
 };
-*/
+
 /*
 module robot(position,rotation){
     translate(position) rotate(rotation){  
@@ -86,4 +86,7 @@ translate(A2_position) rotate([-160,0,0])axis_3();}
 
 //axis_1(initial_position,[0,0,A1_current]);
 target(target_position,target_rotation);
-robot([0,0,0],[0,0,0]);
+//robot([0,0,0],[0,0,0]);
+
+
+//HELLO GITHUB!!!

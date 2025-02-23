@@ -29,11 +29,17 @@ module axis_3(){
     };
 };
 
+
+
+module axis_4(){
+translate([0,5,0]) cube([50,10,50],center=true);
+};
+
 Base_size = [150,150,10];
 A1_position = [0,0,50];
 A2_position = [0,200,0];
-A3_position = [200,0,55];
-A4_size = [50,50,20];
+A3_position = [0,200,55];
+A4_position = [0,0,0];
 A5_size = [40,40,50];
 A6_size = [20,20,20];
 
@@ -68,25 +74,12 @@ module target(position,rotation){
     axis(position,rotation);
 };
 
-/*
-module robot(position,rotation){
-    translate(position) rotate(rotation){  
-    translate([0,0,-Base_size.z/2]) cube(Base_size,center = true);
-    translate([0,0,0]) rotate([0,0,A1_current]){
-            axis_1();
-            translate([0,0,A1_size.z]) rotate([0,-A2_current,0]){
-            translate([0,-A2_size.y/2,A2_size.x/2]) axis_2();
-        };
-        };
-    };
-};
-*/
-rotate([20,0,0]){axis_2();
-translate(A2_position) rotate([-160,0,0])axis_3();}
 
-//axis_1(initial_position,[0,0,A1_current]);
+rotate([0,0,0]){axis_1(); 
+translate(A1_position) rotate([0,0,0]){axis_2();
+translate(A2_position) rotate([0,0,0]){axis_3();
+translate(A3_position) rotate([0,A4_current,0]){axis_4();};  
+    };};};
+
+
 target(target_position,target_rotation);
-//robot([0,0,0],[0,0,0]);
-
-
-//HELLO GITHUB!!!

@@ -1,7 +1,7 @@
 module axis(position,rotation){
    translate(position) rotate(rotation){
    color("blue") rotate([0,0,0]) cylinder(20,1,1);
-   color("red") rotate([-90,0,0]) cylinder(20,1,1);
+   color("red") rotate([-90,0,0]) {cylinder(20,1,1); translate([0,0,20]) sphere(2);};
    color("green") rotate([0,90,0]) cylinder(20,1,1);
    };
    };
@@ -29,19 +29,32 @@ module axis_3(){
     };
 };
 
-
-
 module axis_4(){
-translate([0,5,0]) cube([50,10,50],center=true);
+    union(){
+    translate([0,5,0]) cube([51,10,51],center=true);
+    translate([-22.5,35,0]) cube([5,50,50],center = true);
+    translate([22.5,35,0]) cube([5,50,50],center = true);
+    };
 };
 
+module axis_5(){
+    translate([0,20,0])cube([40,50,50],center = true);
+};
+
+module axis_6(){
+    translate([0,5,0]) cube([50,10,50],center = true);
+    translate([0,10,0]) rotate([-90,0,0]) cylinder(10,20,20);
+    translate([-2.5,20,0]) cube([5,3,20]);
+    translate([0,30,0]) cube([5,20,5],center = true);
+    translate([0,40,0]) axis([0,0,0],[0,0,0]);
+};
 Base_size = [150,150,10];
 A1_position = [0,0,50];
 A2_position = [0,200,0];
 A3_position = [0,200,55];
-A4_position = [0,0,0];
-A5_size = [40,40,50];
-A6_size = [20,20,20];
+A4_position = [0,35,0];
+A5_position = [0,45,0];
+A6_position = [0,10,0];
 
 
 A1_limit = [0,360];
@@ -55,7 +68,7 @@ A1_current = 0;
 A2_current = 0;
 A3_current = 0;
 A4_current = 0;
-A5_current = 0;
+A5_current = 90;
 A6_current = 0;
 
 initial_position = [0,0,0];
@@ -75,13 +88,18 @@ module target(position,rotation){
 };
 
 
-rotate([0,0,0]){axis_1(); 
-translate(A1_position) rotate([0,0,0]){axis_2();
-translate(A2_position) rotate([0,0,0]){axis_3();
-translate(A3_position) rotate([0,A4_current,0]){axis_4();};  
-    };};};
+rotate([0,0,A1_current]){axis_1(); 
+translate(A1_position) rotate([A2_current,0,0]){axis_2();
+translate(A2_position) rotate([-A3_current,0,0]){axis_3();
+translate(A3_position) rotate([0,A4_current,0]){axis_4();
+translate(A4_position) rotate([-(A5_current-90),0,0]){axis_5();
+translate(A5_position) rotate([0,A6_current,0]){axis_6();
+};
+};
+};  
+};
+};
+};
 
 
 target(target_position,target_rotation);
-
-// HELLO OPENSCAD

@@ -1,3 +1,27 @@
+
+function rotX(ang,obj){
+    mat = [
+        [1,0       ,0        ],
+        [0,cos(ang),-sin(ang)],
+        [0,sin(ang),cos(ang) ]
+    ];
+};
+function rotY(ang,obj){
+    mat = [
+        [cos(ang) ,0 ,sin(ang)],
+        [0        ,1 ,0       ],
+        [-sin(ang),0 ,cos(ang)]
+    ];
+};
+function rotX(ang,obj){
+    mat = [
+        [cos(ang),-sin(ang),0],
+        [sin(ang),cos(ang),0 ],
+        [0       ,0       ,1 ]
+    ];
+    
+};
+
 module axis(position,rotation){
    translate(position) rotate(rotation){
    color("blue") rotate([0,0,0]) cylinder(20,1,1);
@@ -64,12 +88,12 @@ A4_limit = [0,369];
 A5_limit = [0,180];
 A6_limit = [0,360];
 
-A1_current = 0;
-A2_current = 0;
-A3_current = 0;
-A4_current = 0;
-A5_current = 90;
-A6_current = 0;
+A1_current = 5;
+A2_current = 140;
+A3_current = 120;
+A4_current = 30;
+A5_current = 70;
+A6_current = 10;
 
 initial_position = [0,0,0];
 target_position = [150,150,150];
@@ -100,6 +124,7 @@ translate(A5_position) rotate([0,A6_current,0]){axis_6();
 };
 };
 };
+
 
 
 target(target_position,target_rotation);

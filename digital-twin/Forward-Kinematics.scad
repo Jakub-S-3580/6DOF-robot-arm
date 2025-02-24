@@ -1,4 +1,4 @@
- function rotX(ang,obj)=
+function rotX(ang,obj)=
     let (mat = [
         [1,0       ,0        ],
         [0,cos(ang),-sin(ang)],
@@ -25,7 +25,7 @@ function rotX(ang,obj)=
 
 axis([-80,-80,-20],[0,0,0]);
 
-function xrot(ang) = [
+function zrot(ang) = [
         [cos(ang),-sin(ang),0],
         [sin(ang),cos(ang),0 ],
         [0       ,0       ,1 ]
@@ -35,7 +35,7 @@ function yrot(ang) = [
         [0        ,1 ,0       ],
         [-sin(ang),0 ,cos(ang)]
 ];
-function zrot(ang) = [
+function xrot(ang) = [
         [1,0       ,0        ],
         [0,cos(ang),-sin(ang)],
         [0,sin(ang),cos(ang) ]
@@ -91,7 +91,7 @@ A2_position = [0,200,0];
 A3_position = [0,200,55];
 A4_position = [0,35,0];
 A5_position = [0,45,0];
-A6_position = [0,10,0];
+A6_position = [0,40,0];
 
 
 A1_limit = [0,360];
@@ -137,8 +137,46 @@ translate(A5_position) rotate([0,A6_current,0]){axis_6();
 };
 };
 
-echo(zrot(A1_current)*(A1_position+(xrot(A2_current)*(A2_position+(xrot(-A3_current)*(A3_position+yrot(A4_current)*(A4_position+xrot(-(A5_current-90))*(A5_position+yrot(A6_current)*(A6_position))))))
-)));
+end_pos =   zrot(A1_current)*(A1_position+
+            xrot(A2_current)*(A2_position+
+            xrot(-A3_current)*(A3_position+
+            yrot(A4_current)*(A4_position+
+            xrot(-(A5_current-90))*(A5_position+
+            yrot(A6_current)*(A6_position)
+)))));
+
+end_rot =   zrot(A1_current)*
+            xrot(A2_current)*
+            xrot(-A3_current)*
+            yrot(A4_current)*
+            xrot(-(A5_current-90))*
+            yrot(A6_current)*
+            [[1,0,0],
+             [0,1,0],
+             [0,0,1]];
 
 
+echo(end_pos);
+echo(end_rot[0],"\n   ",end_rot[1],"\n   ",end_rot[2]);
+/*
 target(target_position,target_rotation);
+
+i = end_rot[2][2];
+g = end_rot[2][0];
+d = end_rot[1][0];
+
+alpha = asin(-g);
+beta = acos(i/(cos(alpha)));
+gamma = asin((d/i)*alpha);
+
+rot_abs = [alpha,beta,gamma];
+
+axis(end_pos+[10,10,10],rot_abs);
+*/
+
+mat = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9]
+];
+echo(mat[0][0]);

@@ -15,7 +15,6 @@ function rotY(ang,obj)=
     mat*obj;
 
 function rotX(ang,obj)=
-
     let (mat = [
         [cos(ang),-sin(ang),0],
         [sin(ang),cos(ang),0 ],
@@ -44,8 +43,8 @@ function xrot(ang) = [
 module axis(position,rotation){
    translate(position) rotate(rotation){
    color("blue") rotate([0,0,0]) cylinder(20,1,1);
-   color("red") rotate([-90,0,0]) {cylinder(20,1,1); translate([0,0,20]) sphere(2);};
-   color("green") rotate([0,90,0]) cylinder(20,1,1);
+   color("green") rotate([-90,0,0]) {cylinder(20,1,1); translate([0,0,20]) sphere(2);};
+   color("red") rotate([0,90,0]) cylinder(20,1,1);
    };
 };
 module axis_1(){
@@ -158,25 +157,22 @@ end_rot =   zrot(A1_current)*
 
 echo(end_pos);
 echo(end_rot[0],"\n   ",end_rot[1],"\n   ",end_rot[2]);
-/*
+
 target(target_position,target_rotation);
 
 i = end_rot[2][2];
 g = end_rot[2][0];
 d = end_rot[1][0];
+echo(i,g,d);
 
-alpha = asin(-g);
-beta = acos(i/(cos(alpha)));
-gamma = asin((d/i)*alpha);
 
+beta = asin(-g);
+alpha = acos(i/cos(beta));
+gamma = asin(d/cos(beta));
+echo(alpha,beta,gamma);
 rot_abs = [alpha,beta,gamma];
 
 axis(end_pos+[10,10,10],rot_abs);
-*/
 
-mat = [
-        [1,2,3],
-        [4,5,6],
-        [7,8,9]
-];
-echo(mat[0][0]);
+
+

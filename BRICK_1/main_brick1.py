@@ -5,7 +5,7 @@ import time
 from ev3dev2.motor import LargeMotor, MediumMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, Motor
 sys.path.insert(1, '../')
 from general_functions import *
-
+R1 = 150
 
 A1 = Motor('OUTPUT_1')
 A2 = Motor('OUTPUT_2')

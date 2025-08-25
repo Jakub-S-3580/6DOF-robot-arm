@@ -100,9 +100,9 @@ A4_limit = [0,369];
 A5_limit = [0,180];
 A6_limit = [0,360];
 
-A1_current = 50;
+A1_current = 5;
 A2_current = 140;
-A3_current = 120;
+A3_current = 100;
 A4_current = 30;
 A5_current = 70;
 A6_current = 10;
